@@ -17,8 +17,8 @@ N_list = c(10, 100, 1000)
 formula = Salary ~ -1 + Country + OpenSource + Remote + +Startup + YearsCodedJob
 coef_df = list()
 
-## from 1 to N times
-## sample the data with replacement
+## for each N in the N_list
+## sample the data with replacement (N times)
 ## run the same regression model on the resampled data (boot)
 ## extract model coefficients
 ## add them to the same data.frame
