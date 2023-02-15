@@ -23,7 +23,7 @@
 ## Modules to use (optional).
 module load r_3.6.0
 # module load apptainer
-# apptainer pull docker://rocker/tidyverse:4.0.1
+# apptainer pull docker://rocker/tidyverse:latest
 
 
 ## scripts to be executed here
