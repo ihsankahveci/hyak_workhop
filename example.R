@@ -7,11 +7,11 @@ set.seed(57)
 data(stackoverflow)
 
 ## explore the data
-stackoverflow |> glimpse()
+stackoverflow %>% glimpse()
 ## sanity check on the dependent variable
 hist(stackoverflow$Salary)
 
-data = stackoverflow |> 
+data = stackoverflow %>% 
   mutate(Startup = ifelse(CompanySizeNumber > 100, 0, 1))
 
 ## REGRESSION with MODEL CONFIDENCE INTERVALS
@@ -24,8 +24,8 @@ summary(fit)
 
 ## Let's create our own summary table
 ## Understanding this is important for the second part.
-model_CI = confint(fit, level = 0.95) |> 
-  as_tibble(rownames = "terms") |> 
+model_CI = confint(fit, level = 0.95) %>% 
+  as_tibble(rownames = "terms") %>% 
   mutate(estimate = coef(fit), .after = "terms") 
 
 
@@ -34,7 +34,7 @@ model_CI = confint(fit, level = 0.95) |>
 ## then write a for loop for bootstrapping
 ## collect the results into a data.frame
 
-data = stackoverflow |> 
+data = stackoverflow %>% 
   mutate(Startup = ifelse(CompanySizeNumber > 100, 0, 1))
 
 N = 100
@@ -57,7 +57,7 @@ for (i in 1:N){
 head(coef_df)
 
 ## plot the distribution of estimates
-coef_df |> 
+coef_df %>% 
   ggplot(aes(x = value, y = after_stat(scaled))) + 
   geom_density() + 
   facet_wrap(~term, scales = "free_x") + 
@@ -66,8 +66,8 @@ coef_df |>
 
 ## calculate percentile CIs
 alpha = 0.05
-bootsrap_CI = coef_df |> 
-  group_by(term) |> 
+bootsrap_CI = coef_df %>% 
+  group_by(term) %>% 
   summarise_all(list(
     estimate = mean, 
     `2.5 %` = ~quantile(.x, probs = alpha),
@@ -75,8 +75,8 @@ bootsrap_CI = coef_df |>
   
 
 ## compare bootstrap CI with model CI
-model_CI |> knitr::kable(digits = 1)
-bootsrap_CI |> knitr::kable(digits = 1)
+model_CI %>% knitr::kable(digits = 1)
+bootsrap_CI %>% knitr::kable(digits = 1)
 
 
 

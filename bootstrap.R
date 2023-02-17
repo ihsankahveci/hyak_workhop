@@ -1,4 +1,5 @@
 
+# make sure we have all the packages we need.
 renv::restore()
 
 library(modeldata, quietly = TRUE)
@@ -14,9 +15,9 @@ data(stackoverflow)
 ## REGRESSION with BOOTSTRAP CONFIDENCE INTERVALS
 ## first define the variables
 ## then write a for loop for bootstrapping
-## collect the results into a data.frame
+## collect the results into a data.frame %>% 
 
-data = stackoverflow |> 
+data = stackoverflow %>% 
   mutate(Startup = ifelse(CompanySizeNumber > 100, 0, 1))
 
 N_list = c(100, 100, 1000)
@@ -32,9 +33,9 @@ for (N in N_list){
   for (i in 1:N){
     boot = slice_sample(data, prop = 1, replace = TRUE)
     fit = glm(formula, data = boot)
-    coef_df = coef(fit) |> 
-      as_tibble(rownames = "term") |> 
-      mutate("N" = as.character(N))  |> 
+    coef_df = coef(fit) %>% 
+      as_tibble(rownames = "term") %>% 
+      mutate("N" = as.character(N))  %>% 
       bind_rows(coef_df)
   }
   cat(N, "bootstraps are completed.\n")
@@ -42,7 +43,7 @@ for (N in N_list){
 
 
 ## plot the distribution of estimates
-plot = coef_df |> 
+plot = coef_df %>% 
   ggplot(aes(x = value, y = after_stat(scaled), fill = N)) + 
   geom_density(alpha = 0.5) + 
   facet_wrap(~term, scales = "free_x") + 
@@ -54,12 +55,12 @@ ggsave(plot, filename = "bootstrap_distribution.png")
 ## calculate percentile CIs
 ## last line splits each N into different data.frame
 alpha = 0.05
-bootsrap_CI = coef_df |> 
-  group_by(N, term) |> 
+bootsrap_CI = coef_df %>% 
+  group_by(N, term) %>% 
   summarise_all(list(
     estimate = mean, 
     `2.5 %` = ~quantile(.x, probs = alpha),
-    `97.5 %` = ~quantile(.x, probs = 1 - alpha))) |> 
+    `97.5 %` = ~quantile(.x, probs = 1 - alpha))) %>% 
   group_split()
 
 ## save output into RDS object
@@ -67,8 +68,9 @@ saveRDS(bootsrap_CI, "bootstrap_output.RDS")
 cat("Bootstrap completed and saved.\n")
 
 ## compare bootstrap CI with across N
-bootsrap_CI |> knitr::kable(digits = 1)
+bootsrap_CI %>% knitr::kable(digits = 1)
 
-
+# making sure store the dependencies of our script
+renv::snapshot()
 
 
