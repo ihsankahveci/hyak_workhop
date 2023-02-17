@@ -6,7 +6,7 @@
 #SBATCH --account=csde
 
 ## Resources
-#SBATCH --partition=<node_type>
+#SBATCH --partition=csde
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --mem=10G
