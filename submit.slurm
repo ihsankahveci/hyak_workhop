@@ -10,7 +10,6 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --mem=10G
-#SBATCH --gpus=<type:quantity> 
 #SBATCH --time=1:00:00 # Max runtime in DD-HH:MM:SS format.
 
 ## specify the working directory for this job
