@@ -4,6 +4,7 @@ renv::restore()
 
 library(modeldata, quietly = TRUE)
 library(ggplot2, quietly = TRUE)
+library(magrittr, quietly = TRUE)
 library(tibble, quietly = TRUE)
 library(dplyr, quietly = TRUE)
 
