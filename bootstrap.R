@@ -1,5 +1,11 @@
+
+install.packages("renv")
+renv::restore()
+
 library(modeldata, quietly = TRUE)
-library(tidyverse, quietly = TRUE)
+library(ggplot2, quietly = TRUE)
+library(dplyr, quietly = TRUE)
+
 options(scipen = 99)
 set.seed(57)
 
@@ -13,7 +19,7 @@ data(stackoverflow)
 data = stackoverflow |> 
   mutate(Startup = ifelse(CompanySizeNumber > 100, 0, 1))
 
-N_list = c(100, 1000, 10000)
+N_list = c(100, 100, 1000)
 formula = Salary ~ -1 + Country + OpenSource + Remote + +Startup + YearsCodedJob
 coef_df = list()
 
