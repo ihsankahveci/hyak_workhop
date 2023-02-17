@@ -1,3 +1,5 @@
+
+renv::restore()
 library(modeldata)
 library(tidyverse)
 options(scipen = 99)
