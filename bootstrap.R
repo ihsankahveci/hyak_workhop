@@ -1,9 +1,9 @@
 
-install.packages("renv")
 renv::restore()
 
 library(modeldata, quietly = TRUE)
 library(ggplot2, quietly = TRUE)
+library(tibble, quietly = TRUE)
 library(dplyr, quietly = TRUE)
 
 options(scipen = 99)
