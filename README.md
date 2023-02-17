@@ -13,7 +13,7 @@ ssh [UW-NetID]@mox.hyak.uw.edu
 
 2. Enter your password. Then, you will be directed to 2-Factor Authentication via Duo Mobile. 
 
-3. Once you are successfully logged in, navigate to your project directory. 
+3. Once you are successfully logged in, navigate to your project directory. (Hint: `ls`, `cd`, `pwd` commands are your best friends.)
 
 4. Then, you can submit your job via this command:  
 ```bash 
