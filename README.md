@@ -5,8 +5,7 @@ It includes a sample script for working with UW HYAK -- on-campus high-performan
 ## Instructions
 **Object:** Running a simple regression model and calculating Bootstrap Confidence Intervals. 
 
-### Logging into HYAK  
-1. Open a terminal instance and paste the following:  
+1. First we need to log-in to our HYAK instance. Open a terminal instance and paste the following:  
 ```bash 
 ssh [UW-NetID]@mox.hyak.uw.edu
 ```
@@ -22,6 +21,11 @@ sbatch submit.slurm
 
 5. If successfuly, you should receive a message with your job id:  
 `Submitted batch job [JOBID]`
+
+6. You can track the progress of your job via: 
+```bash 
+sacct -j [JOBID]
+```
 
 ## Files:  
 - `example.R`: Demonstration of the task, interactively. 
