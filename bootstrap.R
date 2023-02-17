@@ -13,7 +13,7 @@ data(stackoverflow)
 data = stackoverflow |> 
   mutate(Startup = ifelse(CompanySizeNumber > 100, 0, 1))
 
-N_list = c(10, 100, 1000)
+N_list = c(100, 1000, 10000)
 formula = Salary ~ -1 + Country + OpenSource + Remote + +Startup + YearsCodedJob
 coef_df = list()
 
