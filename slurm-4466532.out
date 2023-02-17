@@ -1,0 +1,56 @@
+ℹ Using R 3.6.0 (lockfile was generated with R 4.2.1)
+* The library is already synchronized with the lockfile.
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+100 bootstraps are completed.
+1000 bootstraps are completed.
+10000 bootstraps are completed.
+Saving 7 x 7 in image
+Bootstrap completed and saved.
+
+
+|N   |term                  | estimate|   2.5 %|  97.5 %|
+|:---|:---------------------|--------:|-------:|-------:|
+|100 |CountryCanada         |  46438.1| 44145.6| 48845.0|
+|100 |CountryGermany        |  41187.1| 38635.8| 43675.2|
+|100 |CountryIndia          |   7482.4|  5103.3|  9508.9|
+|100 |CountryUnited Kingdom |  42976.3| 40604.6| 45161.7|
+|100 |CountryUnited States  |  82838.4| 80497.3| 84437.3|
+|100 |OpenSource            |   5381.7|  4209.5|  6321.7|
+|100 |RemoteNot remote      |  -2982.7| -4714.1| -1130.9|
+|100 |Startup               |  -7336.0| -8350.6| -6034.4|
+|100 |YearsCodedJob         |   2370.9|  2262.8|  2477.8|
+
+|N    |term                  | estimate|   2.5 %|  97.5 %|
+|:----|:---------------------|--------:|-------:|-------:|
+|1000 |CountryCanada         |  46497.0| 43701.5| 49283.5|
+|1000 |CountryGermany        |  41206.5| 38553.3| 43994.7|
+|1000 |CountryIndia          |   7520.5|  5289.5|  9649.2|
+|1000 |CountryUnited Kingdom |  43022.6| 40462.6| 45497.8|
+|1000 |CountryUnited States  |  82791.6| 80438.1| 85127.3|
+|1000 |OpenSource            |   5382.1|  4192.6|  6523.4|
+|1000 |RemoteNot remote      |  -3104.2| -5090.8| -1130.1|
+|1000 |Startup               |  -7285.0| -8407.3| -6219.1|
+|1000 |YearsCodedJob         |   2381.8|  2278.6|  2482.2|
+
+|N     |term                  | estimate|   2.5 %|  97.5 %|
+|:-----|:---------------------|--------:|-------:|-------:|
+|10000 |CountryCanada         |  46530.9| 43800.7| 49227.2|
+|10000 |CountryGermany        |  41216.6| 38602.2| 43831.3|
+|10000 |CountryIndia          |   7558.0|  5370.5|  9767.6|
+|10000 |CountryUnited Kingdom |  43091.4| 40612.8| 45545.7|
+|10000 |CountryUnited States  |  82824.8| 80585.2| 85084.2|
+|10000 |OpenSource            |   5386.6|  4234.8|  6533.3|
+|10000 |RemoteNot remote      |  -3076.1| -5004.7| -1179.4|
+|10000 |Startup               |  -7351.7| -8459.3| -6267.3|
+|10000 |YearsCodedJob         |   2381.2|  2279.2|  2485.3|
+* Lockfile written to '/gscratch/home/ikahveci/hyak_workhop/renv.lock'.
