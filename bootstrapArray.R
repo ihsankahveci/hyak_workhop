@@ -1,8 +1,20 @@
+# Setup ####
 # make sure we have all the packages we need.
 # install.packages("renv")
-
 renv::restore()
 
+## Array Job info ####
+## Define vector we previously looped over
+N_list = c(100, 500, 1000)
+
+## Grab integer index of job (i.e. 1, 2, or 3 for elements of N_list)
+array_index = as.numeric(commandArgs(trailingOnly = TRUE))
+
+## Specify N (the looping variable from bootstrap.R)
+## as the appropriate element of N_list
+N = N_list[array_index]
+
+## Libraries ####
 # install.packages(c("modeldata", "ggplot2",
 #                    "magrittr", "tibble", "dplyr"))
 library(modeldata, quietly = TRUE)
@@ -11,42 +23,47 @@ library(magrittr, quietly = TRUE)
 library(tibble, quietly = TRUE)
 library(dplyr, quietly = TRUE)
 
+## Set options and seed ####
 options(scipen = 99)
 set.seed(57)
 
+## Load data ####
 data(stackoverflow)
 
-## REGRESSION with BOOTSTRAP CONFIDENCE INTERVALS
+# REGRESSION with BOOTSTRAP CONFIDENCE INTERVALS ####
 ## first define the variables
 ## then write a for loop for bootstrapping
 ## collect the results into a data.frame %>% 
 
 data = stackoverflow %>% 
   mutate(Startup = ifelse(CompanySizeNumber > 100, 0, 1))
+# 
+# N_list = c(100, 500, 1000)
 
-N_list = c(100, 500, 1000)
+## Specify model formula object
 formula = Salary ~ -1 + Country + OpenSource + Remote + +Startup + YearsCodedJob
 coef_df = list()
 
+## Fit model + bootstrap ####
 ## for each N in the N_list
 ## sample the data with replacement (N times)
 ## run the same regression model on the resampled data (boot)
 ## extract model coefficients
 ## add them to the same data.frame
-for (N in N_list){
-  for (i in 1:N){
-    boot = slice_sample(data, prop = 1, replace = TRUE)
-    fit = glm(formula, data = boot)
-    coef_df = coef(fit) %>% 
-      as_tibble(rownames = "term") %>% 
-      mutate("N" = as.character(N))  %>% 
-      bind_rows(coef_df)
-  }
-  cat(N, "bootstraps are completed.\n")
+# for (N in N_list){
+for (i in 1:N){
+  boot = slice_sample(data, prop = 1, replace = TRUE)
+  fit = glm(formula, data = boot)
+  coef_df = coef(fit) %>% 
+    as_tibble(rownames = "term") %>% 
+    mutate("N" = as.character(N))  %>% 
+    bind_rows(coef_df)
 }
+cat(N, "bootstraps are completed.\n")
+# }
 
 
-## plot the distribution of estimates
+## plot the distribution of estimates ####
 plot = coef_df %>% 
   ggplot(aes(x = value, y = after_stat(scaled), fill = N)) + 
   geom_density(alpha = 0.5) + 
@@ -54,9 +71,9 @@ plot = coef_df %>%
   ggtitle("Bootstrap samples") +
   theme_bw()
 
-ggsave(plot, filename = "bootstrap_distribution.png")
+ggsave(plot, filename = paste0("bootstrap_distribution_N_", N, ".png"))
 
-## calculate percentile CIs
+## calculate percentile CIs ####
 ## last line splits each N into different data.frame
 alpha = 0.05
 bootsrap_CI = coef_df %>% 
@@ -67,14 +84,14 @@ bootsrap_CI = coef_df %>%
     `97.5 %` = ~quantile(.x, probs = 1 - alpha))) %>% 
   group_split()
 
-## save output into RDS object
-saveRDS(bootsrap_CI, "bootstrap_output.RDS")
+## save output into RDS object ####
+saveRDS(bootsrap_CI, paste0("bootstrap_output_N_", N, ".RDS"))
 cat("Bootstrap completed and saved.\n")
 
-## compare bootstrap CI with across N
+## compare bootstrap CI with across N ####
 bootsrap_CI %>% knitr::kable(digits = 1)
 
-# making sure store the dependencies of our script
+# making sure store the dependencies of our script ####
 renv::snapshot()
 
 
