@@ -1,7 +1,8 @@
-
 # make sure we have all the packages we need.
 renv::restore()
 
+# install.packages(c("modeldata", "ggplot2",
+#                    "magrittr", "tibble", "dplyr"))
 library(modeldata, quietly = TRUE)
 library(ggplot2, quietly = TRUE)
 library(magrittr, quietly = TRUE)
@@ -21,7 +22,7 @@ data(stackoverflow)
 data = stackoverflow %>% 
   mutate(Startup = ifelse(CompanySizeNumber > 100, 0, 1))
 
-N_list = c(100, 1000, 10000)
+N_list = c(100, 500, 1000)
 formula = Salary ~ -1 + Country + OpenSource + Remote + +Startup + YearsCodedJob
 coef_df = list()
 
