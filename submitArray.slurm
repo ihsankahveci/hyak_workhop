@@ -2,7 +2,7 @@
 
 #SBATCH --job-name=csde_workshop
 #SBATCH --mail-type=ALL
-#SBATCH --mail-user=jlg0003@uw.edu
+#SBATCH --mail-user=ikahveci@uw.edu
 #SBATCH --account=csde
 
 ## Resources
@@ -16,8 +16,9 @@
 ## (.) means current directory
 #SBATCH --chdir=.
 
-## export all your environment variables to the batch job session
-#SBATCH --export=all
+## using slurm arrays and managing exports
+#SBATCH --array=1-3
+#SBATCH --export=bootstrapArray_%j_%a.out
 
 ## Modules to use (optional).
 module load r_3.6.0
@@ -25,9 +26,7 @@ module load r_3.6.0
 # apptainer pull docker://rocker/tidyverse:latest
 
 ## Execute scripts
-R CMD BATCH bootstrapArray.R
-module load r_3.6.0
-Rscript --verbose bootstrapArray.R ${SLURM_ARRAY_TASK_ID} > bootstratArray_${SLURM_ARRAY_JOB_ID}_${SLURM_ARRAY_TASK_ID}.Rout
+srun Rscript --verbose bootstrapArray.R ${SLURM_ARRAY_TASK_ID} 
 
 
 
