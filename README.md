@@ -14,25 +14,42 @@ ssh [UW-NetID]@mox.hyak.uw.edu
 
 3. Once you are successfully logged in, navigate to your project directory. (Hint: `ls`, `cd`, `pwd` commands are your best friends.)
 
-4. Then, you can submit your job via this command:  
+4. We can use `sftp` or `git` (recommended) for file transfer between local and HYAK. (Hint: You can use `lcd`, `lls`, `lpwd` to navigate through local files.)
+```bash
+sftp [UW-NetID]@mox.hyak.uw.edu
+put -r [PATH-TO-LOCAL-FILE]
+```
+
+5. Then, you can submit your job via this command:  
 ```bash 
 sbatch submit.slurm
 ```
 
-5. If successfuly, you should receive a message with your job id:  
+6. If successfuly, you should receive a message with your job id:  
 `Submitted batch job [JOBID]`
 
-6. You can track the progress of your job via: 
+7. You can track the progress of your job via: 
 ```bash 
 sacct -j [JOBID]
+```
+8. Once finished, you can do quickly check the output in command line:
+```bash
+cat slurm-*
+```
+9. To export final output into our local machines, we can use `sftp` or `git` (recommended) again:
+```bash
+get -r [PATH-TO-REMOTE-FILE]
 ```
 
 ## Files:  
 - `example.R`: Demonstration of the task, interactively. 
-- `bootstrap.R`: Bootstrapping script designed to be used with slurm script.  
--  `submit.slurm`: Slurm script for allocating resources, submitting jobs, exporting the output.
-- `slurm-[JOBID]_N.out`: Once our job is finished, the console output is stored in here.
-- `output/bootstrap_output_N.RDS`: The resulting data.frame with bootstrap estimates. 
-- `plots/bootstrap_distribution_N.png`: Plots that show the distribution of estimates.
+- `bootstrap.R`: Bootstrapping script designed to be used with a slurm script.  
+- `submit.slurm`: Slurm script for a single batch submission.
+- `slurm-[JOBID].out`: Once our job is finished, the console output is stored in here.
+- `output/`: The resulting data.frames with bootstrap estimates. 
+- `plots/`: Plots that show the distribution of bootstrap estimates.
+- `bootstrapArray.R`: Bootstrapping script modified for array batch submission  
+- `submitArray.slurm`: Slurm script modified for array batch submission.
+- `slurm-[JOBID]_N.out`: Outputs of array batches stored in this format.
 
 
