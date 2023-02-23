@@ -1,11 +1,18 @@
 # Setup ####
 # make sure we have all the packages we need.
-install.packages("pacman", repos = "http://cran.us.r-project.org")
-
-pacman::p_load(modeldata, ggplot2, magrittr, tibble)
+install.packages(c("modeldata", "ggplot2",
+                   "magrittr", "tibble", "dplyr", "knitr"),
+                 repos = "http://cran.us.r-project.org")
 
 ## Specify N for number of bootstraps
 N = 100 
+
+## Libraries ####
+library(modeldata, warn.conflicts = FALSE, quietly = TRUE)
+library(ggplot2, warn.conflicts = FALSE, quietly = TRUE)
+library(magrittr, warn.conflicts = FALSE, quietly = TRUE)
+library(tibble, warn.conflicts = FALSE, quietly = TRUE)
+library(dplyr, warn.conflicts = FALSE, quietly = TRUE)
 
 ## Set options and seed ####
 options(scipen = 99)
