@@ -6,7 +6,7 @@
 renv::restore()
 
 # install.packages(c("modeldata", "ggplot2",
-#                    "magrittr", "tibble", "dplyr"))
+#                    "magrittr", "tibble", "dplyr", "knitr"))
 library(modeldata, quietly = TRUE)
 library(ggplot2, quietly = TRUE)
 library(magrittr, quietly = TRUE)
@@ -56,7 +56,12 @@ plot = coef_df %>%
   ggtitle("Bootstrap samples") +
   theme_bw()
 
-ggsave(plot, filename = "bootstrap_distribution.png")
+## Create plots folder if doesn't exist ####
+if(!dir.exists("./plots")){
+  dir.create("./plots")
+}
+
+ggsave(plot, filename = "plots/bootstrap_distribution.png")
 
 ## calculate percentile CIs
 ## last line splits each N into different data.frame
@@ -69,8 +74,13 @@ bootsrap_CI = coef_df %>%
     `97.5 %` = ~quantile(.x, probs = 1 - alpha))) %>% 
   group_split()
 
+## Create output folder if doesn't exist ####
+if(!dir.exists("./output")){
+  dir.create("./output")
+}
+
 ## save output into RDS object
-saveRDS(bootsrap_CI, "bootstrap_output.RDS")
+saveRDS(bootsrap_CI, "output/bootstrap_output.RDS")
 cat("Bootstrap completed and saved.\n")
 
 ## compare bootstrap CI with across N
