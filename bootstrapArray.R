@@ -1,4 +1,3 @@
-#!/usr/bin/env Rscript
 # Setup ####
 # make sure we have all the packages we need.
 # install.packages("renv")
