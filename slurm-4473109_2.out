@@ -1,0 +1,16 @@
+500 bootstraps are completed.
+Saving 7 x 7 in image
+Bootstrap completed and saved.
+
+
+|term                  |N   | estimate|   2.5 %|  97.5 %|
+|:---------------------|:---|--------:|-------:|-------:|
+|CountryCanada         |500 |  46388.4| 43664.3| 49083.5|
+|CountryGermany        |500 |  41118.1| 38408.7| 43731.0|
+|CountryIndia          |500 |   7430.9|  5347.6|  9526.2|
+|CountryUnited Kingdom |500 |  42925.0| 40339.7| 45161.4|
+|CountryUnited States  |500 |  82728.7| 80498.4| 84832.0|
+|OpenSource            |500 |   5386.0|  4211.8|  6450.2|
+|RemoteNot remote      |500 |  -3005.8| -4875.0| -1131.3|
+|Startup               |500 |  -7316.6| -8385.1| -6243.3|
+|YearsCodedJob         |500 |   2382.8|  2276.7|  2485.7|

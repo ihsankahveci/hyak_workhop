@@ -1,0 +1,9 @@
+Installing package into ‘/gscratch/home/ikahveci/R/x86_64-pc-linux-gnu-library/3.6’
+(as ‘lib’ is unspecified)
+Warning: unable to access index for repository http://cran.us.r-project.org/src/contrib:
+  cannot open URL 'http://cran.us.r-project.org/src/contrib/PACKAGES'
+Warning message:
+package ‘pacman’ is not available (for R version 3.6.0) 
+Error in loadNamespace(name) : there is no package called ‘pacman’
+Calls: :: ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
+Execution halted
