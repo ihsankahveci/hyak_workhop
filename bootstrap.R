@@ -1,19 +1,11 @@
 # Setup ####
 # make sure we have all the packages we need.
+renv::deactivate()
 if (!require("pacman")) install.packages("pacman")
-pacman::p_load(modeldata, ggplot2, magrittr, tibble, dplyr)
+pacman::p_load(modeldata, ggplot2, magrittr, tibble)
 
 ## Specify N for number of bootstraps
 N = 100 
- 
-## Libraries ####
-# install.packages(c("modeldata", "ggplot2",
-#                    "magrittr", "tibble", "dplyr", "knitr"))
-library(modeldata, warn.conflicts = FALSE, quietly = TRUE)
-library(ggplot2, warn.conflicts = FALSE, quietly = TRUE)
-library(magrittr, warn.conflicts = FALSE, quietly = TRUE)
-library(tibble, warn.conflicts = FALSE, quietly = TRUE)
-library(dplyr, warn.conflicts = FALSE, quietly = TRUE)
 
 ## Set options and seed ####
 options(scipen = 99)
