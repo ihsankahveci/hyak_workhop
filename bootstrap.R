@@ -1,7 +1,8 @@
 # Setup ####
 # make sure we have all the packages we need.
 if (!require("renv")) install.packages("renv")
-renv::restore()renv::restore()
+
+renv::restore()
 
 ## Specify N for number of bootstraps
 N = 100 
