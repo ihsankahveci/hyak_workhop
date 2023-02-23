@@ -14,15 +14,22 @@ ssh [UW-NetID]@mox.hyak.uw.edu
 
 3. Once you are successfully logged in, navigate to your project directory. (Hint: `ls`, `cd`, `pwd` commands are your best friends.)
 
-4. Then, you can submit your job via this command:  
+4. We can use `sftp` or `git` (recommended) for file transfer between local and HYAK. (Hint: You can use `lcd`, `lls`, `lpwd` to navigate through local files.)
+```bash
+sftp [UW-NetID]@mox.hyak.uw.edu
+put -r [PATH-TO-LOCAL-FILE]
+get -r [PATH-TO-REMOTE-FILE]
+```
+
+5. Then, you can submit your job via this command:  
 ```bash 
 sbatch submit.slurm
 ```
 
-5. If successfuly, you should receive a message with your job id:  
+6. If successfuly, you should receive a message with your job id:  
 `Submitted batch job [JOBID]`
 
-6. You can track the progress of your job via: 
+7. You can track the progress of your job via: 
 ```bash 
 sacct -j [JOBID]
 ```
