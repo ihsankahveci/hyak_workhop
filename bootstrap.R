@@ -1,8 +1,7 @@
 # Setup ####
 # make sure we have all the packages we need.
-if (!require("renv")) install.packages("renv")
-
-renv::restore()
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(modeldata, ggplot2, magrittr, tibble, dplyr)
 
 ## Specify N for number of bootstraps
 N = 100 
