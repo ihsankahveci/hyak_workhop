@@ -28,10 +28,15 @@ sbatch submit.slurm
 6. If successfuly, you should receive a message with your job id:  
 `Submitted batch job [JOBID]`
 
-7. You can track the progress of your job via: 
+7. You can track the progress of your currents job via: 
 ```bash 
-sacct -j [JOBID]
+squeue -u [UW-NetID]
 ```
+or including past jobs:
+```bash
+sacct 
+```
+
 8. Once finished, you can do quickly check the output in command line:
 ```bash
 cat slurm-*
