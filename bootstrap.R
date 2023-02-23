@@ -1,6 +1,6 @@
 # Setup ####
 # make sure we have all the packages we need.
-install.packages("pacman")
+install.packages("pacman", repos = "http://cran.us.r-project.org")
 
 pacman::p_load(modeldata, ggplot2, magrittr, tibble)
 
