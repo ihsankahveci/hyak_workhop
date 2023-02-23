@@ -31,8 +31,8 @@ sacct -j [JOBID]
 - `example.R`: Demonstration of the task, interactively. 
 - `bootstrap.R`: Bootstrapping script designed to be used with slurm script.  
 -  `submit.slurm`: Slurm script for allocating resources, submitting jobs, exporting the output.
-- `slurm-[JOBID].out`: Once our job is finished, the console output is stored in here.
-- `bootstrap_output.RDS`: The resulting data.frame with bootstrap estimates. 
-- `bootstrap_distribution.png`: Plots that show the distribution of estimates.
+- `slurm-[JOBID]_N.out`: Once our job is finished, the console output is stored in here.
+- `output/bootstrap_output_N.RDS`: The resulting data.frame with bootstrap estimates. 
+- `plots/bootstrap_distribution_N.png`: Plots that show the distribution of estimates.
 
 
