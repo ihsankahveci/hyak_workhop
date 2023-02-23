@@ -18,7 +18,7 @@
 
 ## using slurm arrays and managing exports
 #SBATCH --array=1-3
-#SBATCH --export=bootstrapArray_%j_%a.out
+#SBATCH --export=ALL
 
 ## Modules to use (optional).
 module load r_3.6.0
@@ -26,7 +26,7 @@ module load r_3.6.0
 # apptainer pull docker://rocker/tidyverse:latest
 
 ## Execute scripts
-srun Rscript bootstrapArray.R ${SLURM_ARRAY_TASK_ID} 
+Rscript bootstrapArray.R ${SLURM_ARRAY_TASK_ID} 
 
 
 
