@@ -1,6 +1,7 @@
 # Setup ####
 # make sure we have all the packages we need.
-if (!require("pacman")) install.packages("pacman")
+install.packages("pacman")
+
 pacman::p_load(modeldata, ggplot2, magrittr, tibble)
 
 ## Specify N for number of bootstraps
