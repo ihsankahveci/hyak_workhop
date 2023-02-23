@@ -69,7 +69,7 @@ plot = coef_df %>%
   ggtitle("Bootstrap samples") +
   theme_bw()
 
-ggsave(plot, filename = paste0("bootstrap_distribution_", N, ".png"))
+ggsave(plot, filename = paste0("plots/bootstrap_distribution_", N, ".png"))
 
 ## calculate percentile CIs ####
 ## last line splits each N into different data.frame
@@ -82,7 +82,7 @@ bootsrap_CI = coef_df %>%
     `97.5 %` = ~quantile(.x, probs = 1 - alpha)))
 
 ## save output into RDS object ####
-saveRDS(bootsrap_CI, paste0("bootstrap_output_", N, ".RDS"))
+saveRDS(bootsrap_CI, paste0("output/bootstrap_output_", N, ".RDS"))
 cat("Bootstrap completed and saved.\n")
 
 ## compare bootstrap CI with across N ####
