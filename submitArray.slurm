@@ -2,7 +2,7 @@
 
 #SBATCH --job-name=csde_workshop
 #SBATCH --mail-type=ALL
-#SBATCH --mail-user=jlg0003@uw.edu
+#SBATCH --mail-user=ikahveci@uw.edu
 #SBATCH --account=csde
 
 ## Resources
@@ -25,6 +25,7 @@ module load r_3.6.0
 # apptainer pull docker://rocker/tidyverse:latest
 
 ## Execute scripts
+sbatch --array=1-3 boostrapArray.sbatch
 Rscript --verbose bootstrapArray.R ${SLURM_ARRAY_TASK_ID} > bootstratArray_${SLURM_ARRAY_JOB_ID}_${SLURM_ARRAY_TASK_ID}.Rout
 
 
