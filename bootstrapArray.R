@@ -1,3 +1,4 @@
+#!/usr/bin/env Rscript
 # Setup ####
 # make sure we have all the packages we need.
 # install.packages("renv")
@@ -37,8 +38,6 @@ data(stackoverflow)
 
 data = stackoverflow %>% 
   mutate(Startup = ifelse(CompanySizeNumber > 100, 0, 1))
-# 
-# N_list = c(100, 500, 1000)
 
 ## Specify model formula object
 formula = Salary ~ -1 + Country + OpenSource + Remote + +Startup + YearsCodedJob
@@ -65,27 +64,26 @@ cat(N, "bootstraps are completed.\n")
 
 ## plot the distribution of estimates ####
 plot = coef_df %>% 
-  ggplot(aes(x = value, y = after_stat(scaled), fill = N)) + 
+  ggplot(aes(x = value, y = after_stat(scaled))) + 
   geom_density(alpha = 0.5) + 
   facet_wrap(~term, scales = "free_x") + 
   ggtitle("Bootstrap samples") +
   theme_bw()
 
-ggsave(plot, filename = paste0("bootstrap_distribution_N_", N, ".png"))
+ggsave(plot, filename = paste0("bootstrap_distribution_", N, ".png"))
 
 ## calculate percentile CIs ####
 ## last line splits each N into different data.frame
 alpha = 0.05
 bootsrap_CI = coef_df %>% 
-  group_by(N, term) %>% 
+  group_by(term) %>% 
   summarise_all(list(
     estimate = mean, 
     `2.5 %` = ~quantile(.x, probs = alpha),
-    `97.5 %` = ~quantile(.x, probs = 1 - alpha))) %>% 
-  group_split()
+    `97.5 %` = ~quantile(.x, probs = 1 - alpha)))
 
 ## save output into RDS object ####
-saveRDS(bootsrap_CI, paste0("bootstrap_output_N_", N, ".RDS"))
+saveRDS(bootsrap_CI, paste0("bootstrap_output_", N, ".RDS"))
 cat("Bootstrap completed and saved.\n")
 
 ## compare bootstrap CI with across N ####
