@@ -26,7 +26,7 @@ module load r_3.6.0
 # apptainer pull docker://rocker/tidyverse:latest
 
 ## Execute scripts
-srun Rscript --verbose bootstrapArray.R ${SLURM_ARRAY_TASK_ID} 
+srun Rscript bootstrapArray.R ${SLURM_ARRAY_TASK_ID} 
 
 
 
