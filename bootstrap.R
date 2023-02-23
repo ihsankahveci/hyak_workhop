@@ -1,3 +1,5 @@
+#!/usr/bin/env Rscript
+
 # make sure we have all the packages we need.
 # install.packages("renv")
 
@@ -16,6 +18,9 @@ set.seed(57)
 
 data(stackoverflow)
 
+# accept command line arguments and save them in a list called args
+N_list = commandArgs(trailingOnly=TRUE)
+
 ## REGRESSION with BOOTSTRAP CONFIDENCE INTERVALS
 ## first define the variables
 ## then write a for loop for bootstrapping
@@ -24,7 +29,7 @@ data(stackoverflow)
 data = stackoverflow %>% 
   mutate(Startup = ifelse(CompanySizeNumber > 100, 0, 1))
 
-N_list = c(100, 500, 1000)
+#N_list = c(100, 500, 1000)
 formula = Salary ~ -1 + Country + OpenSource + Remote + +Startup + YearsCodedJob
 coef_df = list()
 

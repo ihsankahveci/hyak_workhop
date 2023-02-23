@@ -25,8 +25,8 @@ module load r_3.6.0
 # apptainer pull docker://rocker/tidyverse:latest
 
 ## Execute scripts
-sbatch --array=1-3 boostrapArray.sbatch
-Rscript --verbose bootstrapArray.R ${SLURM_ARRAY_TASK_ID} > bootstratArray_${SLURM_ARRAY_JOB_ID}_${SLURM_ARRAY_TASK_ID}.Rout
+Rscript --verbose bootstrapArray.R 100 500 1000 ${SLURM_ARRAY_TASK_ID} 
+#> bootstratArray_${SLURM_ARRAY_JOB_ID}_${SLURM_ARRAY_TASK_ID}.Rout
 
 
 
