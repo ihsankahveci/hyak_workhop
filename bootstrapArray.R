@@ -16,7 +16,7 @@ N = N_list[array_index]
 
 ## Libraries ####
 # install.packages(c("modeldata", "ggplot2",
-#                    "magrittr", "tibble", "dplyr"))
+#                    "magrittr", "tibble", "dplyr", "knitr"))
 library(modeldata, warn.conflicts = FALSE, quietly = TRUE)
 library(ggplot2, warn.conflicts = FALSE, quietly = TRUE)
 library(magrittr, warn.conflicts = FALSE, quietly = TRUE)
@@ -69,6 +69,12 @@ plot = coef_df %>%
   ggtitle("Bootstrap samples") +
   theme_bw()
 
+## Create plots folder if doesn't exist ####
+if(!dir.exists("./plots")){
+  dir.create("./plots")
+}
+
+## Save plot ####
 ggsave(plot, filename = paste0("plots/bootstrap_distribution_", N, ".png"))
 
 ## calculate percentile CIs ####
@@ -80,6 +86,12 @@ bootsrap_CI = coef_df %>%
     estimate = mean, 
     `2.5 %` = ~quantile(.x, probs = alpha),
     `97.5 %` = ~quantile(.x, probs = 1 - alpha)))
+
+
+## Create output folder if doesn't exist ####
+if(!dir.exists("./output")){
+  dir.create("./output")
+}
 
 ## save output into RDS object ####
 saveRDS(bootsrap_CI, paste0("output/bootstrap_output_", N, ".RDS"))
