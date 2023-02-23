@@ -1,8 +1,8 @@
 # Setup ####
 # make sure we have all the packages we need.
-install.packages(c("modeldata", "ggplot2",
-                   "magrittr", "tibble", "dplyr", "knitr"),
-                 repos = "http://cran.us.r-project.org")
+# install.packages(c("modeldata", "ggplot2",
+#                    "magrittr", "tibble", "dplyr", "knitr"),
+#                  repos = "http://cran.us.r-project.org")
 
 ## Specify N for number of bootstraps
 N = 100 
