@@ -1,0 +1,17 @@
+* The library is already synchronized with the lockfile.
+1000 bootstraps are completed.
+Saving 7 x 7 in image
+Bootstrap completed and saved.
+
+
+|term                  |N    | estimate|   2.5 %|  97.5 %|
+|:---------------------|:----|--------:|-------:|-------:|
+|CountryCanada         |1000 |  46511.1| 43765.0| 49217.9|
+|CountryGermany        |1000 |  41217.6| 38517.0| 43961.0|
+|CountryIndia          |1000 |   7524.4|  5347.6|  9646.9|
+|CountryUnited Kingdom |1000 |  43034.4| 40480.8| 45493.8|
+|CountryUnited States  |1000 |  82806.5| 80457.1| 85077.4|
+|OpenSource            |1000 |   5381.2|  4201.8|  6478.1|
+|RemoteNot remote      |1000 |  -3107.3| -5083.9| -1146.1|
+|Startup               |1000 |  -7286.9| -8407.3| -6198.5|
+|YearsCodedJob         |1000 |   2380.5|  2276.2|  2483.5|
