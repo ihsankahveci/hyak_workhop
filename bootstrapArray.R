@@ -1,8 +1,7 @@
 # Setup ####
 # make sure we have all the packages we need.
-if (!require("renv")) install.packages("renv")
-
-renv::restore()
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(modeldata, ggplot2, magrittr, tibble)
 
 ## Array Job info ####
 ## Define vector we previously looped over
@@ -15,14 +14,14 @@ array_index = as.numeric(commandArgs(trailingOnly = TRUE))
 ## as the appropriate element of N_list
 N = N_list[array_index]
 
-## Libraries ####
-# install.packages(c("modeldata", "ggplot2",
-#                    "magrittr", "tibble", "dplyr", "knitr"))
-library(modeldata, warn.conflicts = FALSE, quietly = TRUE)
-library(ggplot2, warn.conflicts = FALSE, quietly = TRUE)
-library(magrittr, warn.conflicts = FALSE, quietly = TRUE)
-library(tibble, warn.conflicts = FALSE, quietly = TRUE)
-library(dplyr, warn.conflicts = FALSE, quietly = TRUE)
+# ## Libraries ####
+# # install.packages(c("modeldata", "ggplot2",
+# #                    "magrittr", "tibble", "dplyr", "knitr"))
+# library(modeldata, warn.conflicts = FALSE, quietly = TRUE)
+# library(ggplot2, warn.conflicts = FALSE, quietly = TRUE)
+# library(magrittr, warn.conflicts = FALSE, quietly = TRUE)
+# library(tibble, warn.conflicts = FALSE, quietly = TRUE)
+# library(dplyr, warn.conflicts = FALSE, quietly = TRUE)
 
 ## Set options and seed ####
 options(scipen = 99)

@@ -1,6 +1,5 @@
 # Setup ####
 # make sure we have all the packages we need.
-renv::deactivate()
 if (!require("pacman")) install.packages("pacman")
 pacman::p_load(modeldata, ggplot2, magrittr, tibble)
 
