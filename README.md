@@ -18,7 +18,6 @@ ssh [UW-NetID]@mox.hyak.uw.edu
 ```bash
 sftp [UW-NetID]@mox.hyak.uw.edu
 put -r [PATH-TO-LOCAL-FILE]
-get -r [PATH-TO-REMOTE-FILE]
 ```
 
 5. Then, you can submit your job via this command:  
@@ -32,6 +31,14 @@ sbatch submit.slurm
 7. You can track the progress of your job via: 
 ```bash 
 sacct -j [JOBID]
+```
+8. Once finished, you can do quickly check the output in command line:
+```bash
+cat slurm-*
+```
+9. To export final output into our local machines, we can use `sftp` or `git` (recommended) again:
+```bash
+get -r [PATH-TO-REMOTE-FILE]
 ```
 
 ## Files:  
