@@ -48,7 +48,7 @@ coef_df = list()
 ## run the same regression model on the resampled data (boot)
 ## extract model coefficients
 ## add them to the same data.frame
-# for (N in N_list){
+
 for (i in 1:N){
   boot = slice_sample(data, prop = 1, replace = TRUE)
   fit = glm(formula, data = boot)
@@ -58,13 +58,13 @@ for (i in 1:N){
     bind_rows(coef_df)
 }
 cat(N, "bootstraps are completed.\n")
-# }
+
 
 
 ## plot the distribution of estimates ####
 plot = coef_df %>% 
   ggplot(aes(x = value, y = after_stat(scaled))) + 
-  geom_density(alpha = 0.5) + 
+  geom_density(fill = 'lightblue', alpha = 0.5) + 
   facet_wrap(~term, scales = "free_x") + 
   ggtitle("Bootstrap samples") +
   theme_bw()
@@ -75,7 +75,7 @@ ggsave(plot, filename = paste0("bootstrap_distribution_", N, ".png"))
 ## last line splits each N into different data.frame
 alpha = 0.05
 bootsrap_CI = coef_df %>% 
-  group_by(term) %>% 
+  group_by(term, N) %>% 
   summarise_all(list(
     estimate = mean, 
     `2.5 %` = ~quantile(.x, probs = alpha),
