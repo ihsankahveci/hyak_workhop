@@ -1,7 +1,7 @@
 # Setup ####
 # make sure we have all the packages we need.
 # install.packages("renv")
-renv::restore()
+renv::regit adstore()
 
 ## Array Job info ####
 ## Define vector we previously looped over
@@ -17,11 +17,11 @@ N = N_list[array_index]
 ## Libraries ####
 # install.packages(c("modeldata", "ggplot2",
 #                    "magrittr", "tibble", "dplyr"))
-library(modeldata, quietly = TRUE)
-library(ggplot2, quietly = TRUE)
-library(magrittr, quietly = TRUE)
-library(tibble, quietly = TRUE)
-library(dplyr, quietly = TRUE)
+library(modeldata, warn.conflicts = FALSE, quietly = TRUE)
+library(ggplot2, warn.conflicts = FALSE, quietly = TRUE)
+library(magrittr, warn.conflicts = FALSE, quietly = TRUE)
+library(tibble, warn.conflicts = FALSE, quietly = TRUE)
+library(dplyr, warn.conflicts = FALSE, quietly = TRUE)
 
 ## Set options and seed ####
 options(scipen = 99)
@@ -88,7 +88,5 @@ cat("Bootstrap completed and saved.\n")
 ## compare bootstrap CI with across N ####
 bootsrap_CI %>% knitr::kable(digits = 1)
 
-# making sure store the dependencies of our script ####
-renv::snapshot()
 
 
